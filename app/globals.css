@@ -25,6 +25,63 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
+.hero-shell {
+  background: radial-gradient(circle at 20% 15%, #ffedd5 0%, #fffdf8 55%);
+}
+
+.hero-content,
+.hero-highlight {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1.1rem;
+  background: rgba(255, 255, 255, 0.82);
+  padding: 1.8rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+.hero-kicker {
+  margin-bottom: 0.75rem;
+  color: #b45309;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  margin-bottom: 0.9rem;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+.hero-text {
+  margin-bottom: 1.5rem;
+  max-width: 36ch;
+  color: #3f3f46;
+  font-size: 1.07rem;
+  line-height: 1.8;
+}
+
+.section-wrap {
+  padding-top: 4rem;
+}
+
+.section-muted {
+  background: #fff7ed;
+  border-block: 1px solid rgba(0, 0, 0, 0.06);
+  padding-block: 3.2rem;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 3vw, 2.25rem);
+  font-weight: 800;
+}
+
+.section-subtitle {
+  margin-top: 0.5rem;
+  color: #52525b;
+}
+
 .nav-link {
   color: #374151;
   transition: color 0.2s ease;
@@ -88,4 +145,27 @@ body {
   min-height: 8rem;
   background: #ffedd5;
   font-size: 2rem;
+}
+
+.booking-card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+  background: #ffffff;
+  padding: 1.5rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+}
+
+.form-input {
+  width: 100%;
+  border: 1px solid #e4e4e7;
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 0.8rem 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.16);
 }
