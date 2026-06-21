@@ -10,16 +10,18 @@ import Footer from "../components/landing/Footer.jsx";
 
 export default function Home() {
   return (
-    <>
+    <div className="landing-root" id="home">
       <Navbar />
-      <Hero />
-      <About />
-      <Services />
-      <Gallery />
-      <Testimonials />
-      <FAQ />
-      <Contact />
+      <main id="main-content" tabIndex={-1}>
+        <Hero />
+        <About />
+        <Services />
+        <Gallery />
+        <Testimonials />
+        <FAQ />
+        <Contact />
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }
