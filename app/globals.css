@@ -615,6 +615,36 @@ body {
     font-size: 0.86rem;
   }
 
+  .hero-wrap {
+    min-height: 62vh;
+  }
+
+  .hero-inner {
+    min-height: 62vh;
+    justify-content: flex-start;
+    padding-top: 7.2rem;
+    padding-bottom: 1.2rem;
+  }
+
+  .hero-content-box {
+    width: 100%;
+    max-width: 94%;
+    padding: 1.2rem 0.95rem;
+  }
+
+  .hero-main-title {
+    font-size: clamp(1.85rem, 9vw, 2.5rem);
+  }
+
+  .hero-main-subtitle {
+    font-size: clamp(0.98rem, 4.2vw, 1.2rem);
+  }
+
+  .hero-main-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
   .section {
     padding-block: 4.8rem;
   }
