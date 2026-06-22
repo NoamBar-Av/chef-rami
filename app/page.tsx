@@ -48,7 +48,9 @@ export default function Home() {
 
   return (
     <>
-  <NavbarView lang={lang} setLang={setLang} />
+      <div className="header-shell">
+        <NavbarView lang={lang} setLang={setLang} />
+      </div>
       <HeroView lang={lang} />
       <AboutView lang={lang} />
       <ServicesView lang={lang} />

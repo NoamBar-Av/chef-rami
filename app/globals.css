@@ -55,11 +55,14 @@ body {
   font-size: 1.05rem;
 }
 
+.header-shell {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
 /* 1. NAVBAR */
 .top-nav {
-  position: fixed;
-  inset-inline: 0;
-  top: 0;
+  position: static;
   z-index: 60;
   background: transparent;
   border-bottom: 1px solid transparent;
@@ -635,13 +638,13 @@ body {
 
   .hero-inner {
     min-height: 64vh;
-    justify-content: flex-start;
-    padding-top: 8.2rem;
+    justify-content: center;
+    padding-top: 1rem;
   }
 
   html[lang="en"] .hero-inner,
   html[lang="fr"] .hero-inner {
-    padding-top: 9.6rem;
+    padding-top: 1.2rem;
   }
 
   .top-nav-links {
@@ -714,14 +717,14 @@ body {
 
   .hero-inner {
     min-height: 68vh;
-    justify-content: flex-start;
-    padding-top: 9.1rem;
+    justify-content: center;
+    padding-top: 1.1rem;
     padding-bottom: 1.2rem;
   }
 
   html[lang="en"] .hero-inner,
   html[lang="fr"] .hero-inner {
-    padding-top: 10.6rem;
+    padding-top: 1.35rem;
   }
 
   .hero-content-box {
