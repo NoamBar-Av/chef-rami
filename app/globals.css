@@ -151,6 +151,43 @@ body {
   color: #ffffff;
 }
 
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.lang-btn {
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  background: rgba(11, 11, 11, 0.58);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.26rem 0.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  min-width: 2.6rem;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+.lang-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #1b1304;
+}
+
+.top-nav.is-scrolled .lang-btn {
+  border-color: rgba(255, 255, 255, 0.78);
+  background: rgba(17, 17, 17, 0.72);
+  color: #fff;
+}
+
+.top-nav.is-scrolled .lang-btn.active {
+  background: #c9a96e;
+  color: #111;
+}
+
 .nav-cta {
   padding: 0.55rem 1rem;
   font-size: 0.88rem;
@@ -576,6 +613,37 @@ body {
 }
 
 @media (max-width: 1024px) {
+  .top-nav-inner {
+    flex-wrap: wrap;
+    row-gap: 0.55rem;
+  }
+
+  html[lang="en"] .top-nav-inner,
+  html[lang="fr"] .top-nav-inner {
+    row-gap: 0.72rem;
+  }
+
+  .lang-switch {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-wrap {
+    min-height: 64vh;
+  }
+
+  .hero-inner {
+    min-height: 64vh;
+    justify-content: flex-start;
+    padding-top: 8.2rem;
+  }
+
+  html[lang="en"] .hero-inner,
+  html[lang="fr"] .hero-inner {
+    padding-top: 9.6rem;
+  }
+
   .top-nav-links {
     position: static;
     left: auto;
@@ -583,6 +651,11 @@ body {
     display: flex;
     justify-content: center;
     gap: 0.75rem;
+  }
+
+  html[lang="en"] .top-nav-links a,
+  html[lang="fr"] .top-nav-links a {
+    font-size: 0.84rem;
   }
 
   .nav-cta {
@@ -615,15 +688,40 @@ body {
     font-size: 0.86rem;
   }
 
+  html[lang="en"] .brand-texts small,
+  html[lang="fr"] .brand-texts small {
+    font-size: 0.64rem;
+  }
+
+  html[lang="en"] .top-nav-links,
+  html[lang="fr"] .top-nav-links {
+    gap: 0.45rem 0.62rem;
+  }
+
+  html[lang="en"] .top-nav-links a,
+  html[lang="fr"] .top-nav-links a {
+    font-size: 0.8rem;
+  }
+
+  .lang-btn {
+    font-size: 0.72rem;
+    padding: 0.22rem 0.42rem;
+  }
+
   .hero-wrap {
-    min-height: 62vh;
+    min-height: 68vh;
   }
 
   .hero-inner {
-    min-height: 62vh;
+    min-height: 68vh;
     justify-content: flex-start;
-    padding-top: 7.2rem;
+    padding-top: 9.1rem;
     padding-bottom: 1.2rem;
+  }
+
+  html[lang="en"] .hero-inner,
+  html[lang="fr"] .hero-inner {
+    padding-top: 10.6rem;
   }
 
   .hero-content-box {

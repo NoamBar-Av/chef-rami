@@ -1,11 +1,42 @@
 import Image from "next/image";
 
-export default function Hero() {
+const copy = {
+  he: {
+    imageAlt: "שף פרטי לאירועים פרטיים וארוחות שף בבית",
+    subtitle: "שף פרטי לאירועים פרטיים וארוחות שף בבית",
+    text: "אם אתם מחפשים שף לאירועים פרטיים עם סגנון יוקרתי ואישי, אני בונה לכל אירוע תפריט מדויק של ארוחות שף פרטיות, כולל שף גריל לאירועים ושירות חם ומקצועי עד הפרט האחרון.",
+    book: "הזמינו אירוע",
+    gallery: "צפו בגלריה",
+    bookAria: "מעבר לסקשן צור קשר",
+    galleryAria: "מעבר לסקשן גלריה",
+  },
+  en: {
+    imageAlt: "Private chef for private events and in-home chef dining",
+    subtitle: "Private Chef for Private Events & In-Home Dining",
+    text: "If you're looking for a private chef for intimate events with a warm luxury touch, I create a tailored menu for each gathering, including private chef dinners and premium grill experiences.",
+    book: "Book an Event",
+    gallery: "View Gallery",
+    bookAria: "Go to contact section",
+    galleryAria: "Go to gallery section",
+  },
+  fr: {
+    imageAlt: "Chef privé pour événements privés et dîners à domicile",
+    subtitle: "Chef Privé pour Événements Privés & Dîners à Domicile",
+    text: "Si vous recherchez un chef privé pour des événements raffinés et chaleureux, je crée un menu sur mesure pour chaque occasion, y compris des dîners privés et des expériences grill haut de gamme.",
+    book: "Réserver un événement",
+    gallery: "Voir la galerie",
+    bookAria: "Aller à la section contact",
+    galleryAria: "Aller à la section galerie",
+  },
+};
+
+export default function Hero({ lang = "he" }) {
+  const t = copy[lang] ?? copy.he;
   return (
     <section className="hero-wrap" id="hero">
       <Image
         src="/gallery/chef-pics/macaroon.webp"
-        alt="שף פרטי לאירועים יוקרתיים"
+        alt={t.imageAlt}
         fill
         priority
         className="hero-bg-image"
@@ -16,17 +47,14 @@ export default function Hero() {
       <div className="hero-inner site-shell">
         <div className="hero-content-box">
           <h1 className="hero-main-title">שף רמי</h1>
-          <h2 className="hero-main-subtitle">חוויה קולינרית פרטית שנשארת בזיכרון</h2>
-          <p className="hero-main-text">
-            ארוחות שף פרטיות, אירועי גריל ותפריטים בהתאמה אישית – חוויה שנבנית
-            סביב האנשים, האווירה והטעם.
-          </p>
+          <h2 className="hero-main-subtitle">{t.subtitle}</h2>
+          <p className="hero-main-text">{t.text}</p>
           <div className="hero-cta-row">
-            <a href="#contact" className="btn btn-primary" aria-label="מעבר לסקשן צור קשר">
-              הזמינו אירוע
+            <a href="#contact" className="btn btn-primary" aria-label={t.bookAria}>
+              {t.book}
             </a>
-            <a href="#gallery" className="btn btn-secondary light-btn" aria-label="מעבר לסקשן גלריה">
-              צפו בגלריה
+            <a href="#gallery" className="btn btn-secondary light-btn" aria-label={t.galleryAria}>
+              {t.gallery}
             </a>
           </div>
         </div>

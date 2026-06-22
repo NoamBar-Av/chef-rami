@@ -1,8 +1,30 @@
-const whatsappLink =
-  "https://wa.me/972586277079?text=היי%20רמי,%20ראיתי%20את%20האתר%20ואשמח%20לקבל%20פרטים%20על%20אירוע";
 const facebookLink = "https://www.facebook.com/share/176F3mRevv/";
 
-export default function Footer() {
+const copy = {
+  he: {
+    waLabel: "מעבר לוואטסאפ של שף רמי",
+    fbLabel: "מעבר לפייסבוק של שף רמי",
+    copy: "© כל הזכויות שמורות לשף רמי",
+    waMessage: "היי רמי, ראיתי את האתר ואשמח לקבל פרטים על אירוע",
+  },
+  en: {
+    waLabel: "Go to Chef Rami WhatsApp",
+    fbLabel: "Go to Chef Rami Facebook",
+    copy: "© All rights reserved to Chef Rami",
+    waMessage: "Hi Chef Rami, I visited your website and would love details about an event",
+  },
+  fr: {
+    waLabel: "Aller vers le WhatsApp de Chef Rami",
+    fbLabel: "Aller vers le Facebook de Chef Rami",
+    copy: "© Tous droits réservés à Chef Rami",
+    waMessage: "Bonjour Chef Rami, j'ai visité votre site et je souhaite des détails pour un événement",
+  },
+};
+
+export default function Footer({ lang = "he" }) {
+  const t = copy[lang] ?? copy.he;
+  const whatsappLink = `https://wa.me/972586277079?text=${encodeURIComponent(t.waMessage)}`;
+
   return (
     <footer className="site-footer">
       <div className="site-shell footer-inner">
@@ -13,7 +35,7 @@ export default function Footer() {
             href={whatsappLink}
             target="_blank"
             rel="noreferrer"
-            aria-label="מעבר לוואטסאפ של שף רמי"
+            aria-label={t.waLabel}
           >
             WhatsApp
           </a>
@@ -21,12 +43,12 @@ export default function Footer() {
             href={facebookLink}
             target="_blank"
             rel="noreferrer"
-            aria-label="מעבר לפייסבוק של שף רמי"
+            aria-label={t.fbLabel}
           >
             Facebook
           </a>
         </div>
-        <p className="footer-copy">© כל הזכויות שמורות לשף רמי</p>
+        <p className="footer-copy">{t.copy}</p>
       </div>
     </footer>
   );
