@@ -4,7 +4,6 @@ const copy = {
   he: {
     title: "מי אני",
     p1: "אני שף פרטי במרכז עם ניסיון של למעלה מ־20 שנה, מתמחה בליווי אירועים פרטיים ועסקיים באווירה מוקפדת, אישית ואלגנטית.",
-    p2: "אני מגיע לאירועים ברחובות, ראשון לציון, תל אביב, רמת גן, נס ציונה, חולון והמרכז.",
     p3: "המטבח שלי מבוסס על חומרי גלם איכותיים, ביצוע מדויק וסטנדרט אירוח גבוה שמתאים לכל ארוחת שף בבית או אירוע מיוחד.",
     p4: "השירות ניתן בעברית ובצרפתית שוטפת, עם מענה אישי ונעים לכל אורך הדרך.",
     p5: "כל תפריט נבנה בהתאמה מלאה, כולל כשר רבנות ואפשרות למהדרין לפי הצורך.",
@@ -17,7 +16,6 @@ const copy = {
   en: {
     title: "About",
     p1: "I am a private chef in central Israel with over 20 years of experience, specializing in elegant and personalized private and business events.",
-    p2: "I serve events in Rehovot, Rishon LeZion, Tel Aviv, Ramat Gan, Ness Ziona, Holon, and across the central region.",
     p3: "My cuisine is built on premium ingredients, precise execution, and a high hospitality standard for in-home chef dinners and special events.",
     p4: "Service is available in Hebrew and fluent French, with personal and attentive communication throughout.",
     p5: "Every menu is tailor-made, including Rabbanut kosher and optional Mehadrin on request.",
@@ -30,7 +28,6 @@ const copy = {
   fr: {
     title: "À propos",
     p1: "Je suis un chef privé au centre d’Israël avec plus de 20 ans d’expérience, spécialisé dans les événements privés et professionnels raffinés.",
-    p2: "J’interviens à Rehovot, Rishon LeZion, Tel Aviv, Ramat Gan, Ness Ziona, Holon et dans toute la région centrale.",
     p3: "Ma cuisine repose sur des produits de qualité, une exécution précise et un service haut de gamme pour vos dîners privés à domicile.",
     p4: "Le service est proposé en hébreu et en français courant, avec un accompagnement attentif du début à la fin.",
     p5: "Chaque menu est personnalisé, avec cacherout Rabbanut et option Mehadrin selon vos besoins.",
@@ -59,7 +56,6 @@ export default function About({ lang = "he" }) {
         <div>
           <h2 className="section-title">{t.title}</h2>
           <p className="section-text mt-4">{t.p1}</p>
-          <p className="section-text mt-4">{t.p2}</p>
           <p className="section-text mt-4">{t.p3}</p>
           <p className="section-text mt-4">{t.p4}</p>
           <p className="section-text mt-4">{t.p5}</p>

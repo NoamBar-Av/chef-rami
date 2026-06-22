@@ -1,9 +1,10 @@
 import Image from "next/image";
+import Navbar from "./Navbar.jsx";
 
 const copy = {
   he: {
-    imageAlt: "שף פרטי לאירועים פרטיים וארוחות שף בבית",
-    subtitle: "שף פרטי לאירועים פרטיים וארוחות שף בבית",
+    imageAlt: "שף פרטי להפקות ואירועים",
+    subtitle: "שף פרטי להפקות ואירועים",
     text: "אם אתם מחפשים שף לאירועים פרטיים עם סגנון יוקרתי ואישי, אני בונה לכל אירוע תפריט מדויק של ארוחות שף פרטיות, כולל שף גריל לאירועים ושירות חם ומקצועי עד הפרט האחרון.",
     book: "הזמינו אירוע",
     gallery: "צפו בגלריה",
@@ -11,8 +12,8 @@ const copy = {
     galleryAria: "מעבר לסקשן גלריה",
   },
   en: {
-    imageAlt: "Private chef for private events and in-home chef dining",
-    subtitle: "Private Chef for Private Events & In-Home Dining",
+    imageAlt: "Private Chef for Productions & Events",
+    subtitle: "Private Chef for Productions & Events",
     text: "If you're looking for a private chef for intimate events with a warm luxury touch, I create a tailored menu for each gathering, including private chef dinners and premium grill experiences.",
     book: "Book an Event",
     gallery: "View Gallery",
@@ -20,8 +21,8 @@ const copy = {
     galleryAria: "Go to gallery section",
   },
   fr: {
-    imageAlt: "Chef privé pour événements privés et dîners à domicile",
-    subtitle: "Chef Privé pour Événements Privés & Dîners à Domicile",
+    imageAlt: "Chef Privé pour Productions & Événements",
+    subtitle: "Chef Privé pour Productions & Événements",
     text: "Si vous recherchez un chef privé pour des événements raffinés et chaleureux, je crée un menu sur mesure pour chaque occasion, y compris des dîners privés et des expériences grill haut de gamme.",
     book: "Réserver un événement",
     gallery: "Voir la galerie",
@@ -30,7 +31,7 @@ const copy = {
   },
 };
 
-export default function Hero({ lang = "he" }) {
+export default function Hero({ lang = "he", setLang }) {
   const t = copy[lang] ?? copy.he;
   return (
     <section className="hero-wrap" id="hero">
@@ -43,6 +44,10 @@ export default function Hero({ lang = "he" }) {
       />
       <div className="hero-dark-overlay" />
       <div className="hero-smoke" aria-hidden />
+
+      <div className="hero-header-slot">
+        <Navbar lang={lang} setLang={setLang} />
+      </div>
 
       <div className="hero-inner site-shell">
         <div className="hero-content-box">

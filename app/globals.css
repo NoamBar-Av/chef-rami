@@ -56,8 +56,14 @@ body {
 }
 
 .header-shell {
-  margin-top: 24px;
-  margin-bottom: 24px;
+  margin: 0;
+}
+
+.hero-header-slot {
+  position: relative;
+  z-index: 3;
+  padding-top: 14px;
+  margin-bottom: 18px;
 }
 
 /* 1. NAVBAR */
@@ -70,25 +76,24 @@ body {
 }
 
 .top-nav.is-scrolled {
-  background: rgba(248, 243, 234, 0.92);
-  backdrop-filter: blur(8px);
-  border-color: rgba(11, 11, 11, 0.12);
+  background: transparent;
+  border-color: transparent;
 }
 
 .top-nav.is-scrolled .brand-texts strong {
-  color: #111111;
+  color: #f4e6c7;
 }
 
 .top-nav.is-scrolled .brand-texts small {
-  color: #5f5238;
+  color: #c9b896;
 }
 
 .top-nav.is-scrolled .top-nav-links a {
-  color: #1a1a1a;
+  color: #f3efe8;
 }
 
 .top-nav.is-scrolled .top-nav-links a:hover {
-  color: #8b6a34;
+  color: #ffffff;
 }
 
 .top-nav-inner {
@@ -98,6 +103,12 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  padding-inline: 1rem;
+  background: rgba(11, 11, 11, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
 }
 
 .brand-lockup {
