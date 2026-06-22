@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Navbar from "./Navbar.jsx";
 
 const copy = {
   he: {
@@ -31,7 +30,7 @@ const copy = {
   },
 };
 
-export default function Hero({ lang = "he", setLang }) {
+export default function Hero({ lang = "he" }) {
   const t = copy[lang] ?? copy.he;
   return (
     <section className="hero-wrap" id="hero">
@@ -44,10 +43,6 @@ export default function Hero({ lang = "he", setLang }) {
       />
       <div className="hero-dark-overlay" />
       <div className="hero-smoke" aria-hidden />
-
-      <div className="hero-header-slot">
-        <Navbar lang={lang} setLang={setLang} />
-      </div>
 
       <div className="hero-inner site-shell">
         <div className="hero-content-box">

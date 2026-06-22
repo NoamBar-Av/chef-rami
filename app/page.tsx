@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { ComponentType, Dispatch, SetStateAction } from "react";
+import Navbar from "../components/landing/Navbar.jsx";
 import Hero from "../components/landing/Hero.jsx";
 import About from "../components/landing/About.jsx";
 import Services from "../components/landing/Services.jsx";
@@ -17,12 +18,13 @@ type LangProps = {
   lang: Lang;
 };
 
-type HeroProps = {
+type NavbarProps = {
   lang: Lang;
   setLang: Dispatch<SetStateAction<Lang>>;
 };
 
-const HeroView = Hero as ComponentType<HeroProps>;
+const NavbarView = Navbar as ComponentType<NavbarProps>;
+const HeroView = Hero as ComponentType<LangProps>;
 const AboutView = About as ComponentType<LangProps>;
 const ServicesView = Services as ComponentType<LangProps>;
 const GalleryView = Gallery as ComponentType<LangProps>;
@@ -46,7 +48,10 @@ export default function Home() {
 
   return (
     <>
-      <HeroView lang={lang} setLang={setLang} />
+      <div className="header-shell">
+        <NavbarView lang={lang} setLang={setLang} />
+      </div>
+      <HeroView lang={lang} />
       <AboutView lang={lang} />
       <ServicesView lang={lang} />
       <GalleryView lang={lang} />
