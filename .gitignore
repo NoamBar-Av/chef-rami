@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local reviews fallback storage
+/data/
+/public/reviews-uploads/

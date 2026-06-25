@@ -30,7 +30,7 @@ const copy = {
   },
 };
 
-export default function Hero({ lang = "he" }) {
+export default function Hero({ lang = "he", bookHref = "#contact", galleryHref = "#gallery" }) {
   const t = copy[lang] ?? copy.he;
   return (
     <section className="hero-wrap" id="hero">
@@ -50,10 +50,10 @@ export default function Hero({ lang = "he" }) {
           <h2 className="hero-main-subtitle">{t.subtitle}</h2>
           <p className="hero-main-text">{t.text}</p>
           <div className="hero-cta-row">
-            <a href="#contact" className="btn btn-primary" aria-label={t.bookAria}>
+            <a href={bookHref} className="btn btn-primary" aria-label={t.bookAria}>
               {t.book}
             </a>
-            <a href="#gallery" className="btn btn-secondary light-btn" aria-label={t.galleryAria}>
+            <a href={galleryHref} className="btn btn-secondary light-btn" aria-label={t.galleryAria}>
               {t.gallery}
             </a>
           </div>

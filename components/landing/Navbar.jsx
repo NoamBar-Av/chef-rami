@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const copy = {
   he: {
@@ -12,6 +13,7 @@ const copy = {
       { href: "#services", label: "חוויות" },
       { href: "#gallery", label: "גלריה" },
       { href: "#testimonials", label: "המלצות" },
+      { href: "/reviews", label: "ביקורות" },
       { href: "#contact", label: "צור קשר" },
     ],
     logoAria: "לוגו שף רמי",
@@ -24,6 +26,7 @@ const copy = {
       { href: "#services", label: "Experiences" },
       { href: "#gallery", label: "Gallery" },
       { href: "#testimonials", label: "Reviews" },
+      { href: "/reviews", label: "All Reviews" },
       { href: "#contact", label: "Contact" },
     ],
     logoAria: "Chef Rami logo",
@@ -36,6 +39,7 @@ const copy = {
       { href: "#services", label: "Expériences" },
       { href: "#gallery", label: "Galerie" },
       { href: "#testimonials", label: "Avis" },
+      { href: "/reviews", label: "Avis clients" },
       { href: "#contact", label: "Contact" },
     ],
     logoAria: "Logo Chef Rami",
@@ -56,7 +60,7 @@ export default function Navbar({ lang = "he", setLang }) {
   return (
     <header className={`top-nav ${isScrolled ? "is-scrolled" : ""}`}>
       <div className="site-shell top-nav-inner">
-        <div className="brand-lockup" aria-label={t.logoAria}>
+        <Link href="/" className="brand-lockup" aria-label={t.logoAria}>
           <Image
             src="/rami-chef.png"
             alt={t.logoAria}
@@ -68,7 +72,7 @@ export default function Navbar({ lang = "he", setLang }) {
             <strong>שף רמי</strong>
             <small>{t.brandSub}</small>
           </span>
-        </div>
+        </Link>
 
         <nav className="top-nav-links" aria-label={t.navLabel}>
           {t.links.map((link) => (
