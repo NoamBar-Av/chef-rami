@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://chef-rami.netlify.app/gallery/chef-pics/macaroon.webp",
+        url: "https://chef-rami.netlify.app/gallery/menus/menu-01.webp",
         width: 1200,
         height: 630,
         alt: "ביקורות לקוחות על שף רמי",

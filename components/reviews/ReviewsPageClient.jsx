@@ -176,27 +176,33 @@ export default function ReviewsPageClient({ initialReviews = [] }) {
               ) : (
                 reviews.map((review) => (
                   <article key={review.id} className="reviews-blog-card">
-                    <header className="reviews-blog-head">
-                      <h3>{review.name}</h3>
-                      <p>{review.event_type}</p>
-                      <p className="reviews-date">{formatDate(review.created_at)}</p>
-                    </header>
-                    <p className="section-text">{review.review_text}</p>
-
-                    {Array.isArray(review.image_urls) && review.image_urls.length > 0 ? (
-                      <div className="reviews-images-grid">
-                        {review.image_urls.map((url, imageIndex) => (
-                          <Image
-                            key={`${review.id}-img-${imageIndex}`}
-                            src={url}
-                            alt={`תמונת ביקורת של ${review.name} מתוך אירוע ${review.event_type} - תמונה ${imageIndex + 1}`}
-                            width={900}
-                            height={700}
-                            loading="lazy"
-                          />
-                        ))}
+                    <div className="reviews-card-layout">
+                      <div className="reviews-card-text">
+                        <header className="reviews-blog-head">
+                          <h3>{review.name}</h3>
+                          <p>{review.event_type}</p>
+                          <p className="reviews-date">{formatDate(review.created_at)}</p>
+                        </header>
+                        <p className="section-text">{review.review_text}</p>
                       </div>
-                    ) : null}
+
+                      {Array.isArray(review.image_urls) && review.image_urls.length > 0 ? (
+                        <div
+                          className={`reviews-images-grid ${review.image_urls.length === 1 ? "single" : "multi"}`}
+                        >
+                          {review.image_urls.slice(0, 4).map((url, imageIndex) => (
+                            <Image
+                              key={`${review.id}-img-${imageIndex}`}
+                              src={url}
+                              alt={`תמונת ביקורת של ${review.name} מתוך אירוע ${review.event_type} - תמונה ${imageIndex + 1}`}
+                              width={900}
+                              height={700}
+                              loading="lazy"
+                            />
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
                   </article>
                 ))
               )}

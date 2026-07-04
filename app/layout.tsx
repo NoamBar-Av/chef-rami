@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://chef-rami.netlify.app/gallery/chef-pics/macaroon.webp",
+        url: "https://chef-rami.netlify.app/gallery/menus/menu-01.webp",
         width: 1200,
         height: 630,
         alt: "שף רמי - שף פרטי במרכז לאירועים וארוחות שף פרטיות",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "שף פרטי במרכז | שף רמי",
     description:
       "שף פרטי לאירועים במרכז הארץ, ארוחות שף פרטיות, גריל ובשרים, כשר רבנות עם אופציה למהדרין.",
-    images: ["https://chef-rami.netlify.app/gallery/chef-pics/macaroon.webp"],
+  images: ["https://chef-rami.netlify.app/gallery/menus/menu-01.webp"],
   },
   robots: {
     index: true,
@@ -70,7 +70,7 @@ const chefRamiJsonLd = {
   name: "שף רמי",
   telephone: "058-6277079",
   url: "https://www.chef-rami.co.il",
-  image: "https://www.chef-rami.co.il/gallery/chef-pics/macaroon.webp",
+  image: "https://www.chef-rami.co.il/gallery/menus/menu-01.webp",
   description:
     "שף פרטי במרכז עם מעל 20 שנות ניסיון לאירועים פרטיים ועסקיים, ארוחות שף פרטיות, גריל ובשרים, כשר רבנות עם אופציה למהדרין.",
   areaServed: {

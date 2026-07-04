@@ -3,8 +3,8 @@ import Image from "next/image";
 const copy = {
   he: {
     imageAlt: "שף פרטי להפקות ואירועים",
-    subtitle: "שף פרטי להפקות ואירועים",
-    text: "אם אתם מחפשים שף לאירועים פרטיים עם סגנון יוקרתי ואישי, אני בונה לכל אירוע תפריט מדויק של ארוחות שף פרטיות, כולל שף גריל לאירועים ושירות חם ומקצועי עד הפרט האחרון.",
+    subtitle: "שף פרטי להפקות ואירועים בכל הארץ",
+    text: "אוכל בשבילי הוא הרבה יותר מארוחה הוא חוויה שמחברת אנשים. עם שנים של ניסיון, דיוק בפרטים ואהבה גדולה למטבח, אני יוצר אירועים פרטיים ועסקיים שמשאירים טעם של עוד.",
     book: "הזמינו אירוע",
     gallery: "צפו בגלריה",
     bookAria: "מעבר לסקשן צור קשר",
@@ -35,7 +35,7 @@ export default function Hero({ lang = "he", bookHref = "#contact", galleryHref =
   return (
     <section className="hero-wrap" id="hero">
       <Image
-        src="/gallery/chef-pics/macaroon.webp"
+        src="/gallery/menus/menu-01.webp"
         alt={t.imageAlt}
         fill
         priority

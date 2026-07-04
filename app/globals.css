@@ -519,6 +519,28 @@ body {
   background: #fff;
 }
 
+.testimonials-images-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.testimonial-image-card {
+  border-radius: 0.95rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3);
+  background: #0f0f0f;
+  width: min(100%, 760px);
+}
+
+.testimonial-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* 7. FAQ */
 .faq-list {
   margin-top: 1.35rem;
@@ -642,6 +664,13 @@ body {
   border-bottom-color: rgba(255, 255, 255, 0.7);
 }
 
+.footer-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem 1rem;
+}
+
 .footer-copy {
   font-size: 0.83rem;
   color: #c9bb9d;
@@ -732,6 +761,16 @@ body {
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
 }
 
+.reviews-card-layout {
+  display: grid;
+  gap: 1rem;
+}
+
+.reviews-card-text {
+  display: grid;
+  gap: 0.55rem;
+}
+
 .reviews-blog-head h3 {
   margin: 0;
   font-size: 1.15rem;
@@ -759,12 +798,143 @@ body {
   gap: 0.55rem;
 }
 
+.reviews-images-grid.single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .reviews-images-grid img {
   width: 100%;
-  height: 170px;
-  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #f7f1e5;
   border-radius: 0.75rem;
   border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.reviews-images-grid.single img {
+  aspect-ratio: 4 / 3;
+}
+
+/* 11. SAMPLE MENUS */
+.sample-menus-shell {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.sample-menus-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sample-menu-card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.sample-menu-card h3 {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.sample-menu-list {
+  margin: 0;
+  padding-inline-start: 1.1rem;
+  display: grid;
+  gap: 0.35rem;
+  color: #3d3d3d;
+}
+
+.sample-menu-note {
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  color: #7a6340;
+}
+
+.sample-menus-images-grid {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.sample-menu-image-trigger {
+  border: 0;
+  padding: 0;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  background: none;
+  cursor: pointer;
+  height: 420px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.sample-menu-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.28s ease;
+}
+
+.sample-menu-image-trigger:hover .sample-menu-image {
+  transform: scale(1.04);
+}
+
+.experience-shell {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.experience-copy {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.experience-back-link-wrap {
+  margin: 0;
+}
+
+.experience-back-link {
+  color: #7a5f2f;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.experience-back-link:hover {
+  color: #4d3b18;
+}
+
+.experience-highlights {
+  margin: 0.75rem 0 0;
+  padding-inline-start: 1.2rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.experience-images-grid {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.experience-image-card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.85rem;
+  overflow: hidden;
+  background: #fff;
+}
+
+.experience-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
 }
 
 .reviews-admin-toolbar {
@@ -779,6 +949,22 @@ body {
   margin-top: 0.75rem;
   display: flex;
   gap: 0.55rem;
+}
+
+@media (min-width: 1025px) {
+  .reviews-card-layout {
+    direction: ltr;
+    grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+    align-items: start;
+  }
+
+  .reviews-card-layout .reviews-card-text {
+    direction: rtl;
+  }
+
+  .reviews-card-layout .reviews-images-grid {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -834,6 +1020,18 @@ body {
   .gallery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .sample-menus-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sample-menus-images-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sample-menu-image-trigger {
+    height: 360px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -855,6 +1053,22 @@ body {
 
   .top-nav-links a {
     font-size: 0.86rem;
+  }
+
+  .sample-menus-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sample-menus-images-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sample-menu-image-trigger {
+    height: 320px;
+  }
+
+  .experience-images-grid {
+    grid-template-columns: 1fr;
   }
 
   html[lang="en"] .brand-texts small,

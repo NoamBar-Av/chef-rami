@@ -17,7 +17,7 @@ const galleryItemsByLang = (lang) => Array.from({ length: 12 }, (_, index) => {
     fr: `Chef Rami - galerie d'événements et de dîners privés, image ${index + 1}`,
   };
   return {
-    src: `/gallery/chef-pics/chef-rami-gallery-${num}.webp`,
+    src: `/gallery/home/chef-rami-gallery-${num}.webp`,
     alt: altByLang[lang] ?? altByLang.he,
   };
 });

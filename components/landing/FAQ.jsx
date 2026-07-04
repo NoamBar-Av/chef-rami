@@ -20,7 +20,7 @@ const copy = {
       },
       {
         q: "באילו אזורים אתה עובד?",
-        a: "אני מעניק שירות כשף פרטי ברחובות, שף פרטי תל אביב ובכל ערי המרכז, עם הגעה נוחה וגמישה לפי מיקום האירוע.",
+        a: "מעניק שירות בכל הארץ.",
       },
     ],
   },
@@ -41,7 +41,7 @@ const copy = {
       },
       {
         q: "Which areas do you serve?",
-        a: "I serve Rehovot, Tel Aviv, and the wider central Israel region with flexible arrival based on your event location.",
+        a: "I provide service across all of Israel.",
       },
     ],
   },
@@ -62,7 +62,7 @@ const copy = {
       },
       {
         q: "Dans quelles zones intervenez-vous ?",
-        a: "J’interviens à Rehovot, Tel Aviv et dans toute la région du centre d’Israël avec une grande flexibilité.",
+        a: "J’interviens dans tout le pays.",
       },
     ],
   },
