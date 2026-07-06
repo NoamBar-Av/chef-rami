@@ -46,7 +46,7 @@ export default function About({ lang = "he" }) {
       <div className="site-shell grid gap-8 md:grid-cols-2 md:items-center">
         <div className="about-photo-wrap">
           <Image
-            src="/gallery/experiences/kosher-catering/01.jpg"
+            src="/gallery/chef-pics/chef-photo.jpg"
             alt={t.imageAlt}
             width={1100}
             height={900}

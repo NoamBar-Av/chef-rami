@@ -87,15 +87,15 @@ export default function SampleMenusPageClient() {
 
       <main className="section section-cream" id="sample-menus-content">
         <div className="site-shell sample-menus-shell">
-          <section className="reviews-form-wrap" aria-labelledby="sample-menus-title">
+          <section className="sample-menus-intro-wrap" aria-labelledby="sample-menus-title">
             <h1 id="sample-menus-title" className="section-title">
               {t.pageTitle}
             </h1>
-            <p className="section-text reviews-form-intro">{t.intro}</p>
+            <p className="section-text sample-menus-intro-text">{t.intro}</p>
             <p className="sample-menu-note">{t.note}</p>
           </section>
 
-          <section className="reviews-blog-list" aria-label={t.menusGalleryTitle}>
+          <section className="sample-menus-gallery-wrap" aria-label={t.menusGalleryTitle}>
             <h2 className="section-title">{t.menusGalleryTitle}</h2>
             <div className="sample-menus-images-grid">
               {menuImages.map((image) => (

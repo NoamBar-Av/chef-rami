@@ -40,6 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local reviews fallback storage
+# local data storage
 /data/
-/public/reviews-uploads/

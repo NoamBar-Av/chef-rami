@@ -208,7 +208,7 @@ body {
 .hero-wrap {
   position: relative;
   width: 100%;
-  min-height: 52vh;
+  min-height: 64vh;
   overflow: hidden;
 }
 
@@ -234,7 +234,7 @@ body {
 .hero-inner {
   position: relative;
   z-index: 2;
-  min-height: 52vh;
+  min-height: 64vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -388,7 +388,7 @@ body {
 
 @media (min-width: 1200px) {
   .services-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -652,14 +652,14 @@ body {
   text-decoration: none;
 }
 
-.footer-reviews-link {
+.footer-quick-link {
   color: #f3e3be;
   text-decoration: none;
   border-bottom: 1px dashed rgba(243, 227, 190, 0.5);
   padding-bottom: 2px;
 }
 
-.footer-reviews-link:hover {
+.footer-quick-link:hover {
   color: #fff;
   border-bottom-color: rgba(255, 255, 255, 0.7);
 }
@@ -819,6 +819,24 @@ body {
 .sample-menus-shell {
   display: grid;
   gap: 1.1rem;
+}
+
+.sample-menus-intro-wrap {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.2rem;
+}
+
+.sample-menus-intro-text {
+  margin-top: 0.7rem;
+}
+
+.sample-menus-gallery-wrap {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.2rem;
 }
 
 .sample-menus-grid {
@@ -985,11 +1003,11 @@ body {
   }
 
   .hero-wrap {
-    min-height: 64vh;
+    min-height: 74vh;
   }
 
   .hero-inner {
-    min-height: 64vh;
+    min-height: 74vh;
     justify-content: center;
     padding-top: 1rem;
   }
@@ -1092,11 +1110,11 @@ body {
   }
 
   .hero-wrap {
-    min-height: 68vh;
+    min-height: 80vh;
   }
 
   .hero-inner {
-    min-height: 68vh;
+    min-height: 80vh;
     justify-content: center;
     padding-top: 1.1rem;
     padding-bottom: 1.2rem;

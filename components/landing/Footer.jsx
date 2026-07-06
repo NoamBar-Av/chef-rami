@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const facebookLink = "https://www.facebook.com/share/176F3mRevv/";
 
 const copy = {
@@ -7,24 +5,18 @@ const copy = {
     waLabel: "מעבר לוואטסאפ של שף רמי",
     fbLabel: "מעבר לפייסבוק של שף רמי",
     copy: "© כל הזכויות שמורות לשף רמי",
-    reviewsLink: "ביקורות לקוחות",
-    menusLink: "תפריטים לדוגמא",
     waMessage: "היי רמי, ראיתי את האתר ואשמח לקבל פרטים על אירוע",
   },
   en: {
     waLabel: "Go to Chef Rami WhatsApp",
     fbLabel: "Go to Chef Rami Facebook",
     copy: "© All rights reserved to Chef Rami",
-    reviewsLink: "Customer Reviews",
-    menusLink: "Sample Menus",
     waMessage: "Hi Chef Rami, I visited your website and would love details about an event",
   },
   fr: {
     waLabel: "Aller vers le WhatsApp de Chef Rami",
     fbLabel: "Aller vers le Facebook de Chef Rami",
     copy: "© Tous droits réservés à Chef Rami",
-    reviewsLink: "Avis clients",
-    menusLink: "Menus exemples",
     waMessage: "Bonjour Chef Rami, j'ai visité votre site et je souhaite des détails pour un événement",
   },
 };
@@ -38,14 +30,6 @@ export default function Footer({ lang = "he" }) {
       <div className="site-shell footer-inner">
         <p className="footer-logo">RM</p>
         <p>058-6277079</p>
-        <div className="footer-quick-links">
-          <Link href="/reviews" className="footer-reviews-link">
-            {t.reviewsLink}
-          </Link>
-          <Link href="/sample-menus" className="footer-reviews-link">
-            {t.menusLink}
-          </Link>
-        </div>
         <div className="footer-socials">
           <a
             href={whatsappLink}
