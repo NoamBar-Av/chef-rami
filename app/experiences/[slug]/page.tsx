@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import type { ComponentType } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/landing/Navbar.jsx";
 import Footer from "@/components/landing/Footer.jsx";
+import ExperienceImagesGallery from "@/components/experiences/ExperienceImagesGallery.jsx";
 import { experiences, getExperienceBySlug } from "@/lib/experiences/data";
 
 const NavbarView = Navbar as ComponentType<{ lang?: string; setLang?: (value: unknown) => void }>;
@@ -80,21 +80,7 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
 
           <section className="reviews-blog-list" aria-label={`גלריית אירועים עבור ${experience.title.he}`}>
             <h2 className="section-title">תמונות מאירועים</h2>
-
-            <div className="experience-images-grid">
-              {experience.images.slice(0, 8).map((imageSrc, index) => (
-                <article key={imageSrc} className="experience-image-card">
-                  <Image
-                    src={imageSrc}
-                    alt={`${experience.title.he} - תמונה ${index + 1}`}
-                    width={1200}
-                    height={900}
-                    className="experience-image"
-                    loading="lazy"
-                  />
-                </article>
-              ))}
-            </div>
+            <ExperienceImagesGallery images={experience.images} title={experience.title.he} lang="he" />
           </section>
         </div>
       </main>

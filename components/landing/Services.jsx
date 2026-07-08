@@ -1,42 +1,141 @@
 import Link from "next/link";
-import { experiences } from "@/lib/experiences/data";
-
-const homepageExperienceSlugs = [
-  "private-chef-dining",
-  "grill-meat-events",
-  "hospitality-platters",
-  "private-corporate-events",
-];
+import Image from "next/image";
+import privateImage from "@/app/gallery/expirience/private.png";
+import grillImage from "@/app/gallery/expirience/grill.png";
+import plattersImage from "@/app/gallery/expirience/platters.png";
+import businessImage from "@/app/gallery/expirience/buisness.png";
 
 const copy = {
   he: {
     title: "החוויות שלנו",
+    subtitle: "ארבע חוויות חתימה לאירוח מוקפד ובלתי נשכח.",
+    discover: "גלו עוד",
+    items: [
+      {
+        slug: "private-chef-dining",
+        title: "ארוחות שף פרטיות",
+        description: "חוויה אינטימית עם תפריט מותאם אישית, שירות מלא והגשה אלגנטית עד הבית.",
+        image: privateImage,
+      },
+      {
+        slug: "grill-meat-events",
+        title: "אירועי גריל ובשרים",
+        description: "נתחים מובחרים, צלייה מדויקת ואירוח עשיר שנבנה לאירועים עם נוכחות מרשימה.",
+        image: grillImage,
+      },
+      {
+        slug: "hospitality-platters",
+        title: "מגשי אירוח יוקרתיים",
+        description: "מגשים מעוצבים שמדגישים טעם, צבע ואסתטיקה לחוויית אירוח מוקפדת ויוקרתית.",
+        image: plattersImage,
+      },
+      {
+        slug: "private-corporate-events",
+        title: "אירועים עסקיים",
+        description: "ליווי קולינרי מדויק לאירועי חברה והשקות, עם סטנדרט פרימיום ותשומת לב לפרטים.",
+        image: businessImage,
+      },
+    ],
   },
   en: {
     title: "Our Experiences",
+    subtitle: "A curated portfolio of premium culinary experiences.",
+    discover: "Discover more",
+    items: [
+      {
+        slug: "private-chef-dining",
+        title: "Private Chef Dining",
+        description: "An intimate tailored menu with refined service and elegant in-home presentation.",
+        image: privateImage,
+      },
+      {
+        slug: "grill-meat-events",
+        title: "Grill & Meat Events",
+        description: "Prime cuts, precise grilling, and a rich hosting atmosphere crafted for impact.",
+        image: grillImage,
+      },
+      {
+        slug: "hospitality-platters",
+        title: "Luxury Hospitality Platters",
+        description: "Beautifully designed platters balancing flavor, color, and premium presentation.",
+        image: plattersImage,
+      },
+      {
+        slug: "private-corporate-events",
+        title: "Corporate Events",
+        description: "High-end culinary execution for business gatherings, launches, and executive hosting.",
+        image: businessImage,
+      },
+    ],
   },
   fr: {
     title: "Nos Expériences",
+    subtitle: "Une galerie d’expériences culinaires haut de gamme.",
+    discover: "Découvrir",
+    items: [
+      {
+        slug: "private-chef-dining",
+        title: "Dîners privés avec chef",
+        description: "Une expérience intime avec menu sur mesure, service raffiné et présentation élégante.",
+        image: privateImage,
+      },
+      {
+        slug: "grill-meat-events",
+        title: "Événements grillades",
+        description: "Des pièces premium et une cuisson précise pour une réception marquante.",
+        image: grillImage,
+      },
+      {
+        slug: "hospitality-platters",
+        title: "Plateaux de réception",
+        description: "Des plateaux soigneusement composés, alliant goût, couleur et esthétique haut de gamme.",
+        image: plattersImage,
+      },
+      {
+        slug: "private-corporate-events",
+        title: "Événements professionnels",
+        description: "Un accompagnement culinaire précis pour événements d’entreprise et lancements.",
+        image: businessImage,
+      },
+    ],
   },
 };
 
 export default function Services({ lang = "he" }) {
   const t = copy[lang] ?? copy.he;
-  const homepageExperiences = experiences.filter((service) => homepageExperienceSlugs.includes(service.slug));
 
   return (
-    <section className="section testimonials-dark" id="services">
-      <div className="site-shell">
+    <section className="section services-portfolio" id="services">
+      <div className="site-shell services-shell">
         <h2 className="section-title">{t.title}</h2>
-        <div className="services-grid mt-8">
-          {homepageExperiences.map((service) => (
+        <p className="services-subtitle">{t.subtitle}</p>
+
+        <div className="services-portfolio-grid">
+          {t.items.map((service) => (
             <Link
               key={service.slug}
               href={`/experiences/${service.slug}`}
-              className="clean-card service-card service-card-link"
-              aria-label={`מעבר לעמוד חוויה: ${service.title[lang] ?? service.title.he}`}
+              className="service-portfolio-card"
+              aria-label={`מעבר לעמוד חוויה: ${service.title}`}
             >
-              <p>{service.title[lang] ?? service.title.he}</p>
+              <div className="service-portfolio-image-wrap">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  width={1200}
+                  height={900}
+                  className="service-portfolio-image"
+                />
+              </div>
+
+              <div className="service-portfolio-content">
+                <h3>{service.title}</h3>
+                <span className="service-portfolio-separator" aria-hidden />
+                <p>{service.description}</p>
+                <span className="service-portfolio-link">
+                  {t.discover} <span aria-hidden>→</span>
+                </span>
+              </div>
             </Link>
           ))}
         </div>

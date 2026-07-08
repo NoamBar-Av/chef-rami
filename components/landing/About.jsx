@@ -1,8 +1,9 @@
 import Image from "next/image";
+import aboutChefImage from "@/app/gallery/about/aboutChef.jpeg";
 
 const copy = {
   he: {
-    title: "מי אני",
+    title: "האיש מאחורי החוויה",
     p1: "אני שף פרטי במרכז עם ניסיון של למעלה מ־20 שנה, מתמחה בליווי אירועים פרטיים ועסקיים באווירה מוקפדת, אישית ואלגנטית.",
     p3: "המטבח שלי מבוסס על חומרי גלם איכותיים, ביצוע מדויק וסטנדרט אירוח גבוה שמתאים לכל ארוחת שף בבית או אירוע מיוחד.",
     p4: "השירות ניתן בעברית ובצרפתית שוטפת, עם מענה אישי ונעים לכל אורך הדרך.",
@@ -43,10 +44,10 @@ export default function About({ lang = "he" }) {
   const t = copy[lang] ?? copy.he;
   return (
     <section className="section" id="about">
-      <div className="site-shell grid gap-8 md:grid-cols-2 md:items-center">
+  <div className="site-shell grid gap-8 md:grid-cols-2 md:items-stretch">
         <div className="about-photo-wrap">
           <Image
-            src="/gallery/chef-pics/chef-photo.jpg"
+            src={aboutChefImage}
             alt={t.imageAlt}
             width={1100}
             height={900}
