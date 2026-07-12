@@ -2,7 +2,7 @@ const facebookLink = "https://www.facebook.com/share/176F3mRevv/";
 
 const copy = {
   he: {
-    title: "מחפשים שף פרטי במרכז לאירוע הקרוב?",
+    title: "מחפשים שף פרטי לאירוע?",
     text: "נשמח לתכנן יחד תפריט מדויק לאירוע פרטי, משפחתי או עסקי עם חוויית אירוח חמה, יוקרתית ובלתי נשכחת.",
     waLabel: "שליחת הודעה בוואטסאפ לשף רמי",
     fbLabel: "מעבר לעמוד הפייסבוק של שף רמי",
@@ -35,7 +35,7 @@ export default function Contact({ lang = "he" }) {
   const whatsappLink = `https://wa.me/972586277079?text=${encodeURIComponent(t.waMessage)}`;
 
   return (
-    <section id="contact" className="section contact-cta">
+    <section id="contact" className="section contact-cta home-section">
       <div className="site-shell">
         <div className="contact-box">
           <h2 className="section-title">{t.title}</h2>

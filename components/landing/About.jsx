@@ -3,16 +3,18 @@ import aboutChefImage from "@/app/gallery/about/aboutChef.jpeg";
 
 const copy = {
   he: {
-    title: "האיש מאחורי החוויה",
-    p1: "אני שף רמי, שף פרטי במרכז עם ניסיון של למעלה מ־20 שנה, מתמחה בליווי אירועים פרטיים ועסקיים באווירה מוקפדת, אישית ואלגנטית.",
-    p3: "המטבח שלי מבוסס על חומרי גלם איכותיים, ביצוע מדויק וסטנדרט אירוח גבוה שמתאים לכל ארוחת שף בבית או אירוע מיוחד.",
-    p4: "השירות ניתן בעברית ובצרפתית שוטפת, עם מענה אישי ונעים לכל אורך הדרך.",
-    p5: "כל תפריט נבנה בהתאמה מלאה, כולל כשר רבנות ואפשרות למהדרין לפי הצורך.",
+    title: "מי אני",
+    p1: "אני שף רמי, שף פרטי עם למעלה מ־20 שנות ניסיון, המתמחה ביצירת חוויות קולינריות בהתאמה אישית לאירועים. מבחינתי, אוכל הוא הרבה יותר מארוחה – הוא הדרך לחבר בין אנשים וליצור רגעים שנשארים בזיכרון.",
+    p2: "אני מגיע לכל מקום שבו מתקיים האירוע – בבית, בווילה, במשרד או בכל לוקיישן שתבחרו – ומביא איתי את חוויית המסעדה, עם תפריט שנבנה במיוחד עבורכם, בישול במקום והגשה מוקפדת.",
+    p3: "השירות ניתן בעברית, באנגלית ובצרפתית, כדי שתוכלו ליהנות מחוויה קולינרית מקצועית, אישית ובלתי נשכחת.",
+    p4: "",
+    p5: "",
     imageAlt: "שף רמי באירוע פרטי",
     b1: "כשר רבנות",
     b2: "אופציה למהדרין",
     b3: "עברית",
     b4: "צרפתית",
+    b5: "אנגלית",
   },
   en: {
     title: "About",
@@ -25,6 +27,7 @@ const copy = {
     b2: "Mehadrin Option",
     b3: "Hebrew",
     b4: "French",
+    b5: "English",
   },
   fr: {
     title: "À propos",
@@ -37,13 +40,14 @@ const copy = {
     b2: "Option Mehadrin",
     b3: "Hébreu",
     b4: "Français",
+    b5: "Anglais",
   },
 };
 
 export default function About({ lang = "he" }) {
   const t = copy[lang] ?? copy.he;
   return (
-    <section className="section" id="about">
+    <section className="section home-section" id="about">
   <div className="site-shell grid gap-8 md:grid-cols-2 md:items-stretch">
         <div className="about-photo-wrap">
           <Image
@@ -57,15 +61,17 @@ export default function About({ lang = "he" }) {
         <div>
           <h2 className="section-title">{t.title}</h2>
           <p className="section-text mt-4">{t.p1}</p>
-          <p className="section-text mt-4">{t.p3}</p>
-          <p className="section-text mt-4">{t.p4}</p>
-          <p className="section-text mt-4">{t.p5}</p>
+          {t.p2 ? <p className="section-text mt-4">{t.p2}</p> : null}
+          {t.p3 ? <p className="section-text mt-4">{t.p3}</p> : null}
+          {t.p4 ? <p className="section-text mt-4">{t.p4}</p> : null}
+          {t.p5 ? <p className="section-text mt-4">{t.p5}</p> : null}
 
           <div className="badge-row mt-6">
             <span className="about-badge">{t.b1}</span>
             <span className="about-badge">{t.b2}</span>
             <span className="about-badge">{t.b3}</span>
             <span className="about-badge">{t.b4}</span>
+            {t.b5 ? <span className="about-badge">{t.b5}</span> : null}
           </div>
         </div>
       </div>

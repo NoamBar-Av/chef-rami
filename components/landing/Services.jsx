@@ -8,7 +8,6 @@ import businessImage from "@/app/gallery/expirience/buisness.png";
 const copy = {
   he: {
     title: "החוויות שלנו",
-    subtitle: "ארבע חוויות חתימה לאירוח מוקפד ובלתי נשכח.",
     discover: "גלו עוד",
     items: [
       {
@@ -24,22 +23,21 @@ const copy = {
         image: grillImage,
       },
       {
-        slug: "hospitality-platters",
-        title: "מגשי אירוח יוקרתיים",
+        slug: "platters",
+        title: "מגשי אירוח ",
         description: "מגשים מעוצבים שמדגישים טעם, צבע ואסתטיקה לחוויית אירוח מוקפדת ויוקרתית.",
         image: plattersImage,
       },
       {
         slug: "private-corporate-events",
-        title: "אירועים עסקיים",
-        description: "ליווי קולינרי מדויק לאירועי חברה והשקות, עם סטנדרט פרימיום ותשומת לב לפרטים.",
+        title: "אירועי חברה",
+        description: "חוויה קולינרית מדויקת לאירועים, עם סטנדרט פרימיום ותשומת לב לפרטים.",
         image: businessImage,
       },
     ],
   },
   en: {
     title: "Our Experiences",
-    subtitle: "A curated portfolio of premium culinary experiences.",
     discover: "Discover more",
     items: [
       {
@@ -55,7 +53,7 @@ const copy = {
         image: grillImage,
       },
       {
-        slug: "hospitality-platters",
+        slug: "platters",
         title: "Luxury Hospitality Platters",
         description: "Beautifully designed platters balancing flavor, color, and premium presentation.",
         image: plattersImage,
@@ -70,7 +68,6 @@ const copy = {
   },
   fr: {
     title: "Nos Expériences",
-    subtitle: "Une galerie d’expériences culinaires haut de gamme.",
     discover: "Découvrir",
     items: [
       {
@@ -86,7 +83,7 @@ const copy = {
         image: grillImage,
       },
       {
-        slug: "hospitality-platters",
+        slug: "platters",
         title: "Plateaux de réception",
         description: "Des plateaux soigneusement composés, alliant goût, couleur et esthétique haut de gamme.",
         image: plattersImage,
@@ -108,7 +105,6 @@ export default function Services({ lang = "he" }) {
     <section className="section services-portfolio" id="services">
       <div className="site-shell services-shell">
         <h2 className="section-title">{t.title}</h2>
-        <p className="services-subtitle">{t.subtitle}</p>
 
         <div className="services-portfolio-grid">
           {t.items.map((service) => (

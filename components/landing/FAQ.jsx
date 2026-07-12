@@ -73,7 +73,7 @@ export default function FAQ({ lang = "he" }) {
   const t = copy[lang] ?? copy.he;
 
   return (
-    <section id="faq" className="section section-cream">
+    <section id="faq" className="section section-cream home-section">
       <div className="site-shell">
         <h2 className="section-title">{t.title}</h2>
 

@@ -66,7 +66,7 @@ export default function Navbar({ lang = "he", setLang }) {
             className="brand-logo"
           />
           <span className="brand-texts">
-            <strong>שף רמי</strong>
+            <strong>Chef Rami</strong>
             <small>{t.brandSub}</small>
           </span>
         </Link>

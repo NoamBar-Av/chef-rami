@@ -1,8 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "שף רמי | שף פרטי לאירועים",
-  description: "שף פרטי לאירועים, ארוחות שף ואירוח קולינרי יוקרתי במרכז.",
+  title: "שף רמי | שף פרטי לאירועים"
 };
 
 export default function RootLayout({ children }) {
