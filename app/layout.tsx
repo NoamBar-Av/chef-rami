@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -11,6 +11,11 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.chef-rami.co.il"),
@@ -29,9 +34,9 @@ export const metadata: Metadata = {
     canonical: "https://chef-rami.netlify.app",
   },
   openGraph: {
-    title: "שף פרטי במרכז | שף רמי - שף לאירועים וגריל כשר",
+    title: "שף פרטי  | שף רמי - שף לאירועים וגריל כשר",
     description:
-      "שף פרטי במרכז עם 20+ שנות ניסיון: ארוחות שף פרטיות, אירועי גריל ובשרים, תפריט כשר רבנות ואופציה למהדרין לאירועים פרטיים ועסקיים.",
+      "שף פרטי עם 20+ שנות ניסיון: ארוחות שף פרטיות, אירועי גריל ובשרים, תפריט כשר רבנות ואופציה למהדרין לאירועים פרטיים ועסקיים.",
   url: "https://chef-rami.netlify.app",
     siteName: "שף רמי",
     locale: "he_IL",
@@ -41,15 +46,15 @@ export const metadata: Metadata = {
         url: "https://chef-rami.netlify.app/gallery/menus/menu-01.webp",
         width: 1200,
         height: 630,
-        alt: "שף רמי - שף פרטי במרכז לאירועים וארוחות שף פרטיות",
+        alt: "שף רמי - שף פרטי לאירועים וארוחות שף פרטיות",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "שף פרטי במרכז | שף רמי",
+    title: "שף פרטי  | שף רמי",
     description:
-      "שף פרטי לאירועים במרכז הארץ, ארוחות שף פרטיות, גריל ובשרים, כשר רבנות עם אופציה למהדרין.",
+      "שף פרטי לאירועים , ארוחות שף פרטיות, גריל ובשרים, כשר רבנות עם אופציה למהדרין.",
   images: ["https://chef-rami.netlify.app/gallery/menus/menu-01.webp"],
   },
   robots: {
@@ -70,10 +75,10 @@ const chefRamiJsonLd = {
   url: "https://www.chef-rami.co.il",
   image: "https://www.chef-rami.co.il/gallery/menus/menu-01.webp",
   description:
-    "שף פרטי במרכז עם מעל 20 שנות ניסיון לאירועים פרטיים ועסקיים, ארוחות שף פרטיות, גריל ובשרים, כשר רבנות עם אופציה למהדרין.",
+    " עם מעל 20 שנות ניסיון לאירועים פרטיים ועסקיים, ארוחות שף פרטיות, גריל ובשרים, כשר רבנות עם אופציה למהדרין.",
   areaServed: {
     "@type": "Place",
-    name: "מרכז הארץ, ישראל",
+    name: " הארץ, ישראל",
   },
   servesCuisine: ["Chef", "Private Dining", "Grill", "Kosher"],
   availableLanguage: ["Hebrew", "French"],
