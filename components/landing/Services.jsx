@@ -102,7 +102,7 @@ export default function Services({ lang = "he" }) {
   const t = copy[lang] ?? copy.he;
 
   return (
-    <section className="section services-portfolio" id="services">
+    <section className="section services-portfolio home-section" id="services">
       <div className="site-shell services-shell">
         <h2 className="section-title">{t.title}</h2>
 
