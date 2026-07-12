@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import chefWork01 from "@/app/gallery/chef-pics/unnamed (1).png";
 import chefWork02 from "@/app/gallery/chef-pics/WhatsApp Image 2026-07-12 at 09.54.24 (1).jpeg";
 import chefWork03 from "@/app/gallery/chef-pics/unnamed.png";
@@ -152,94 +151,8 @@ const galleryItems = [
 
 export default function Gallery({ lang = "he" }) {
   const t = copy[lang] ?? copy.he;
-  const [openImageIndex, setOpenImageIndex] = useState(null);
-  const [savedScrollY, setSavedScrollY] = useState(0);
-  const [historyAdded, setHistoryAdded] = useState(false);
 
   const filteredItems = galleryItems;
-  const openImage = openImageIndex !== null ? filteredItems[openImageIndex] : null;
-
-  const openLightbox = (index) => {
-    const scrollY = window.scrollY;
-    setSavedScrollY(scrollY);
-    setOpenImageIndex(index);
-    setHistoryAdded(true);
-    
-    // Add history first
-    history.pushState({ galleryLightbox: true }, '');
-  };
-
-  const closeLightbox = (fromPopState = false) => {
-    setOpenImageIndex(null);
-    
-    if (!fromPopState && historyAdded) {
-      setHistoryAdded(false);
-      history.back();
-    }
-  };
-
-  // Handle scroll prevention
-  useEffect(() => {
-    if (openImageIndex !== null) {
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${savedScrollY}px`;
-      document.body.style.left = '0';
-      document.body.style.right = '0';
-      document.body.style.width = '100%';
-
-      return () => {
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.left = '';
-        document.body.style.right = '';
-        document.body.style.width = '';
-        window.scrollTo(0, savedScrollY);
-      };
-    }
-  }, [openImageIndex, savedScrollY]);
-
-  // Handle keyboard navigation
-  useEffect(() => {
-    if (openImageIndex === null) return;
-
-    const handleEscape = () => setOpenImageIndex(null);
-
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") {
-        handleEscape();
-      }
-      if (event.key === "ArrowRight") {
-        setOpenImageIndex((prev) => (prev === null ? 0 : (prev + 1) % filteredItems.length));
-      }
-      if (event.key === "ArrowLeft") {
-        setOpenImageIndex((prev) =>
-          prev === null ? 0 : (prev - 1 + filteredItems.length) % filteredItems.length
-        );
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [openImageIndex, filteredItems.length]);
-
-  // Handle popstate (back button)
-  useEffect(() => {
-    if (openImageIndex === null) return;
-
-    const onPopState = () => {
-      setHistoryAdded(false);
-      setOpenImageIndex(null);
-    };
-
-    window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
-  }, [openImageIndex]);
-
-  const onLightboxBackdropClick = (event) => {
-    if (event.target === event.currentTarget) {
-      closeLightbox();
-    }
-  };
 
   return (
     <>
@@ -252,19 +165,9 @@ export default function Gallery({ lang = "he" }) {
 
         <div className="gallery-grid">
           {filteredItems.map((item, index) => (
-            <article
+            <div
               key={`${item.src.src}-${index}`}
               className="gallery-item"
-              role="button"
-              tabIndex={0}
-              onClick={() => openLightbox(index)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  openLightbox(index);
-                }
-              }}
-              aria-label={`${t.openImage}: ${item.alt[lang] ?? item.alt.he}`}
             >
                 <Image
                   src={item.src}
@@ -276,38 +179,10 @@ export default function Gallery({ lang = "he" }) {
                   sizes="(max-width: 560px) 100vw, (max-width: 800px) 50vw, (max-width: 1100px) 33vw, 24vw"
                   className="gallery-image"
                 />
-            </article>
+            </div>
           ))}
         </div>
       </section>
-
-      {openImage && (
-        <div
-          className="gallery-lightbox"
-          onClick={onLightboxBackdropClick}
-          role="dialog"
-          aria-modal="true"
-          aria-label={t.dialog}
-        >
-          <button
-            className="gallery-lightbox-close"
-            onClick={() => closeLightbox()}
-            aria-label={lang === "he" ? "סגירת התמונה" : "Close image"}
-            type="button"
-          >
-            ×
-          </button>
-          <div className="gallery-lightbox-content">
-            <Image
-              src={openImage.src}
-              alt={openImage.alt[lang] ?? openImage.alt.he}
-              sizes="(max-width: 768px) calc(100vw - 24px), calc(100vw - 48px)"
-              className="gallery-lightbox-image"
-              priority
-            />
-          </div>
-        </div>
-      )}
     </>
   );
 }
