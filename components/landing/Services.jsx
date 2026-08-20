@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import privateImage from "@/app/gallery/expirience/private.png";
@@ -9,6 +12,9 @@ const copy = {
   he: {
     title: "החוויות שלנו",
     discover: "גלו עוד",
+    carouselLabel: "גלריית חוויות במובייל",
+    carouselDotsLabel: "אינדיקטורים לגלילת החוויות",
+    carouselDotLabel: "מעבר לכרטיס:",
     items: [
       {
         slug: "private-chef-dining",
@@ -39,6 +45,9 @@ const copy = {
   en: {
     title: "Our Experiences",
     discover: "Discover more",
+    carouselLabel: "Mobile experiences gallery",
+    carouselDotsLabel: "Experience carousel indicators",
+    carouselDotLabel: "Go to card:",
     items: [
       {
         slug: "private-chef-dining",
@@ -69,6 +78,9 @@ const copy = {
   fr: {
     title: "Nos Expériences",
     discover: "Découvrir",
+    carouselLabel: "Galerie mobile des expériences",
+    carouselDotsLabel: "Indicateurs du carrousel des expériences",
+    carouselDotLabel: "Aller à la carte :",
     items: [
       {
         slug: "private-chef-dining",
@@ -100,13 +112,85 @@ const copy = {
 
 export default function Services({ lang = "he" }) {
   const t = copy[lang] ?? copy.he;
+  const gridRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+
+    if (!grid) {
+      return undefined;
+    }
+
+    const getCards = () => Array.from(grid.querySelectorAll(".service-portfolio-card"));
+
+    const updateActiveIndex = () => {
+      if (!window.matchMedia("(max-width: 768px)").matches) {
+        setActiveIndex(0);
+        return;
+      }
+
+      const cards = getCards();
+
+      if (!cards.length) {
+        setActiveIndex(0);
+        return;
+      }
+
+      const currentScroll = grid.scrollLeft;
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      cards.forEach((card, index) => {
+        const distance = Math.abs(card.offsetLeft - currentScroll);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveIndex(closestIndex);
+    };
+
+    updateActiveIndex();
+    grid.addEventListener("scroll", updateActiveIndex, { passive: true });
+    window.addEventListener("resize", updateActiveIndex);
+
+    return () => {
+      grid.removeEventListener("scroll", updateActiveIndex);
+      window.removeEventListener("resize", updateActiveIndex);
+    };
+  }, [lang, t.items.length]);
+
+  const scrollToCard = (index) => {
+    const grid = gridRef.current;
+
+    if (!grid) {
+      return;
+    }
+
+    const cards = grid.querySelectorAll(".service-portfolio-card");
+    const targetCard = cards[index];
+
+    if (!targetCard) {
+      return;
+    }
+
+    grid.scrollTo({
+      left: targetCard.offsetLeft,
+      behavior: "smooth",
+    });
+
+    setActiveIndex(index);
+  };
 
   return (
     <section className="section services-portfolio home-section" id="services">
       <div className="site-shell services-shell">
         <h2 className="section-title">{t.title}</h2>
 
-        <div className="services-portfolio-grid">
+        <div ref={gridRef} className="services-portfolio-grid" aria-label={t.carouselLabel}>
           {t.items.map((service) => (
             <Link
               key={service.slug}
@@ -133,6 +217,19 @@ export default function Services({ lang = "he" }) {
                 </span>
               </div>
             </Link>
+          ))}
+        </div>
+
+        <div className="services-portfolio-dots" aria-label={t.carouselDotsLabel}>
+          {t.items.map((service, index) => (
+            <button
+              key={service.slug}
+              type="button"
+              className={`services-portfolio-dot${activeIndex === index ? " is-active" : ""}`}
+              aria-label={`${t.carouselDotLabel} ${service.title}`}
+              aria-current={activeIndex === index ? "true" : undefined}
+              onClick={() => scrollToCard(index)}
+            />
           ))}
         </div>
       </div>

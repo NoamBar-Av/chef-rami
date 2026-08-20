@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useCallback, useEffect, useRef, useState } from "react";
 import chefWork01 from "@/app/gallery/chef-pics/unnamed (1).png";
 import chefWork02 from "@/app/gallery/chef-pics/WhatsApp Image 2026-07-12 at 09.54.24 (1).jpeg";
 import chefWork03 from "@/app/gallery/chef-pics/unnamed.png";
@@ -21,6 +22,9 @@ const copy = {
       "מהמטבח ועד השולחן – רגעים נבחרים מהאירועים שלנו",
     openImage: "פתח תמונה מוגדלת",
     dialog: "תצוגת גלריה מוגדלת",
+    previous: "לתמונות הקודמות",
+    next: "לתמונות הבאות",
+    carouselLabel: "גלריית תמונות ראשית",
   },
   en: {
     eyebrow: "Gallery",
@@ -28,6 +32,9 @@ const copy = {
       "A curated selection of moments from private events, chef dinners, and refined hospitality with precision and passion.",
     openImage: "Open enlarged image",
     dialog: "Enlarged gallery preview",
+    previous: "Previous images",
+    next: "Next images",
+    carouselLabel: "Main photo gallery",
   },
   fr: {
     eyebrow: "Galerie",
@@ -35,6 +42,9 @@ const copy = {
       "Une sélection de moments d'événements privés, de dîners de chef et d'un accueil soigné, entre précision et passion.",
     openImage: "Ouvrir l'image agrandie",
     dialog: "Aperçu agrandi de la galerie",
+    previous: "Images précédentes",
+    next: "Images suivantes",
+    carouselLabel: "Galerie photo principale",
   },
 };
 
@@ -151,8 +161,125 @@ const galleryItems = [
 
 export default function Gallery({ lang = "he" }) {
   const t = copy[lang] ?? copy.he;
+  const viewportRef = useRef(null);
+  const [canGoPrev, setCanGoPrev] = useState(false);
+  const [canGoNext, setCanGoNext] = useState(false);
+  const [activePage, setActivePage] = useState(0);
+  const [visibleCards, setVisibleCards] = useState(4);
 
   const filteredItems = galleryItems;
+
+  const getVisibleCards = useCallback(() => {
+    if (typeof window === "undefined") {
+      return 4;
+    }
+
+    if (window.innerWidth <= 560) {
+      return 1;
+    }
+
+    if (window.innerWidth <= 1100) {
+      return 3;
+    }
+
+    return 4;
+  }, []);
+
+  const getScrollStep = useCallback((viewport, cardsToShow = getVisibleCards()) => {
+    const firstCard = viewport?.querySelector(".gallery-item");
+    const cardWidth = firstCard instanceof HTMLElement ? firstCard.getBoundingClientRect().width : 0;
+    const viewportStyles = window.getComputedStyle(viewport);
+    const gap = Number.parseFloat(viewportStyles.gap || viewportStyles.columnGap || "0") || 0;
+
+    return (cardWidth + gap) * cardsToShow;
+  }, [getVisibleCards]);
+
+  const pageCount = Math.ceil(filteredItems.length / visibleCards);
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+
+    if (!viewport) {
+      return undefined;
+    }
+
+    const updateScrollState = () => {
+      const cardsToShow = getVisibleCards();
+      const scrollStep = getScrollStep(viewport, cardsToShow);
+      const maxScrollLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+
+      setVisibleCards(cardsToShow);
+      setCanGoPrev(viewport.scrollLeft > 4);
+      setCanGoNext(viewport.scrollLeft < maxScrollLeft - 4);
+
+      if (scrollStep > 0) {
+        const nextPage = Math.round(viewport.scrollLeft / scrollStep);
+        setActivePage(Math.max(0, Math.min(nextPage, Math.ceil(filteredItems.length / cardsToShow) - 1)));
+      } else {
+        setActivePage(0);
+      }
+    };
+
+    const animationFrame = window.requestAnimationFrame(updateScrollState);
+    viewport.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+
+    let resizeObserver;
+
+    if (typeof ResizeObserver !== "undefined") {
+      resizeObserver = new ResizeObserver(updateScrollState);
+      resizeObserver.observe(viewport);
+    }
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      viewport.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+      resizeObserver?.disconnect();
+    };
+  }, [filteredItems.length, getScrollStep, getVisibleCards]);
+
+  const scrollByCards = (direction) => {
+    const viewport = viewportRef.current;
+
+    if (!viewport) {
+      return;
+    }
+
+    const scrollAmount = Math.max(getScrollStep(viewport), viewport.clientWidth * 0.8);
+
+    viewport.scrollBy({
+      left: direction * scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollToPage = (pageIndex) => {
+    const viewport = viewportRef.current;
+
+    if (!viewport) {
+      return;
+    }
+
+    const scrollAmount = getScrollStep(viewport);
+
+    viewport.scrollTo({
+      left: pageIndex * scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  const handleViewportKeyDown = (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      scrollByCards(-1);
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      scrollByCards(1);
+    }
+  };
 
   return (
     <>
@@ -163,12 +290,29 @@ export default function Gallery({ lang = "he" }) {
           <p>{t.description}</p>
         </div>
 
-        <div className="gallery-grid">
-          {filteredItems.map((item, index) => (
-            <div
-              key={`${item.src.src}-${index}`}
-              className="gallery-item"
-            >
+        <div className="gallery-carousel" aria-label={t.carouselLabel}>
+          <button
+            type="button"
+            className="gallery-nav gallery-nav-prev"
+            aria-label={t.previous}
+            onClick={() => scrollByCards(-1)}
+            disabled={!canGoPrev}
+          >
+            <span aria-hidden>←</span>
+          </button>
+
+          <div
+            ref={viewportRef}
+            className="gallery-grid"
+            tabIndex={0}
+            onKeyDown={handleViewportKeyDown}
+            dir="ltr"
+          >
+            {filteredItems.map((item, index) => (
+              <article
+                key={`${item.src.src}-${index}`}
+                className="gallery-item"
+              >
                 <Image
                   src={item.src}
                   alt={item.alt[lang] ?? item.alt.he}
@@ -176,12 +320,44 @@ export default function Gallery({ lang = "he" }) {
                   height={1500}
                   loading="lazy"
                   decoding="async"
-                  sizes="(max-width: 560px) 100vw, (max-width: 800px) 50vw, (max-width: 1100px) 33vw, 24vw"
+                  sizes="(max-width: 560px) 86vw, (max-width: 1100px) 33vw, 25vw"
                   className="gallery-image"
                 />
-            </div>
-          ))}
+              </article>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className="gallery-nav gallery-nav-next"
+            aria-label={t.next}
+            onClick={() => scrollByCards(1)}
+            disabled={!canGoNext}
+          >
+            <span aria-hidden>→</span>
+          </button>
         </div>
+
+        {pageCount > 1 ? (
+          <div className="gallery-pagination" aria-label={t.carouselLabel}>
+            {Array.from({ length: pageCount }, (_, index) => {
+              const isActive = index === activePage;
+
+              return (
+                <button
+                  key={`gallery-page-${index}`}
+                  type="button"
+                  className={`gallery-dot ${isActive ? "is-active" : ""}`}
+                  aria-label={`${t.carouselLabel} ${index + 1}`}
+                  aria-pressed={isActive}
+                  onClick={() => scrollToPage(index)}
+                >
+                  <span className="sr-only">{index + 1}</span>
+                </button>
+              );
+            })}
+          </div>
+        ) : null}
       </section>
     </>
   );

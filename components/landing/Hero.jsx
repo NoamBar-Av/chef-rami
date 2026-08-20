@@ -48,7 +48,7 @@ export default function Hero({ lang = "he", bookHref = "#contact", galleryHref =
         style={{ backgroundImage: `url(${heroImage.src})` }}
       />
 
-      <div className="hero-content">
+      <div className="hero-content" data-lang={lang} dir={lang === "he" ? "rtl" : "ltr"}>
 
         <h1>
           <span>{t.headingLine1}</span>

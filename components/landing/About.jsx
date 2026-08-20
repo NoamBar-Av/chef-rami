@@ -1,9 +1,14 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import aboutChefImage from "@/app/gallery/about/aboutChef.jpeg";
 
 const copy = {
   he: {
     title: "מי אני",
+    readMore: "קרא עוד",
+    readLess: "הצג פחות",
     p1: "אני שף רמי, שף פרטי עם למעלה מ־20 שנות ניסיון, המתמחה ביצירת חוויות קולינריות בהתאמה אישית לאירועים. מבחינתי, אוכל הוא הרבה יותר מארוחה – הוא הדרך לחבר בין אנשים וליצור רגעים שנשארים בזיכרון.",
     p2: "אני מגיע לכל מקום שבו מתקיים האירוע – בבית, בווילה, במשרד או בכל לוקיישן שתבחרו – ומביא איתי את חוויית המסעדה, עם תפריט שנבנה במיוחד עבורכם, בישול במקום והגשה מוקפדת.",
     p3: "השירות ניתן בעברית, באנגלית ובצרפתית, כדי שתוכלו ליהנות מחוויה קולינרית מקצועית, אישית ובלתי נשכחת.",
@@ -18,6 +23,8 @@ const copy = {
   },
   en: {
     title: "About",
+    readMore: "Read more",
+    readLess: "Show less",
     p1: "I am a private chef in central Israel with over 20 years of experience, specializing in elegant and personalized private and business events.",
     p3: "My cuisine is built on premium ingredients, precise execution, and a high hospitality standard for in-home chef dinners and special events.",
     p4: "Service is available in Hebrew and fluent French, with personal and attentive communication throughout.",
@@ -31,6 +38,8 @@ const copy = {
   },
   fr: {
     title: "À propos",
+    readMore: "Lire la suite",
+    readLess: "Réduire",
     p1: "Je suis un chef privé au centre d’Israël avec plus de 20 ans d’expérience, spécialisé dans les événements privés et professionnels raffinés.",
     p3: "Ma cuisine repose sur des produits de qualité, une exécution précise et un service haut de gamme pour vos dîners privés à domicile.",
     p4: "Le service est proposé en hébreu et en français courant, avec un accompagnement attentif du début à la fin.",
@@ -46,9 +55,12 @@ const copy = {
 
 export default function About({ lang = "he" }) {
   const t = copy[lang] ?? copy.he;
+  const [isMobileExpanded, setIsMobileExpanded] = useState(false);
+
+
   return (
     <section className="section home-section" id="about">
-  <div className="site-shell grid gap-8 md:grid-cols-2 md:items-stretch">
+      <div className="site-shell grid gap-8 md:grid-cols-2 md:items-stretch">
         <div className="about-photo-wrap">
           <Image
             src={aboutChefImage}
@@ -61,10 +73,24 @@ export default function About({ lang = "he" }) {
         <div>
           <h2 className="section-title">{t.title}</h2>
           <p className="section-text mt-4">{t.p1}</p>
-          {t.p2 ? <p className="section-text mt-4">{t.p2}</p> : null}
-          {t.p3 ? <p className="section-text mt-4">{t.p3}</p> : null}
-          {t.p4 ? <p className="section-text mt-4">{t.p4}</p> : null}
-          {t.p5 ? <p className="section-text mt-4">{t.p5}</p> : null}
+
+          <div className={`about-more-copy ${isMobileExpanded ? "is-expanded" : ""}`}>
+            {t.p2 ? <p className="section-text mt-4">{t.p2}</p> : null}
+            {t.p3 ? <p className="section-text mt-4">{t.p3}</p> : null}
+            {t.p4 ? <p className="section-text mt-4">{t.p4}</p> : null}
+            {t.p5 ? <p className="section-text mt-4">{t.p5}</p> : null}
+          </div>
+
+          {(t.p2 || t.p3 || t.p4 || t.p5) ? (
+            <button
+              type="button"
+              className="about-read-more"
+              onClick={() => setIsMobileExpanded((value) => !value)}
+              aria-expanded={isMobileExpanded}
+            >
+              {isMobileExpanded ? t.readLess : t.readMore}
+            </button>
+          ) : null}
 
           <div className="badge-row mt-6">
             <span className="about-badge">{t.b1}</span>
