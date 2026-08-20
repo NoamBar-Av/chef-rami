@@ -1581,9 +1581,14 @@ section:not(.home-section) .section-title::after {
 
   .service-portfolio-card {
     flex: 0 0 min(84vw, 340px);
+    grid-template-rows: 300px 1fr;
     height: auto;
-    min-height: 620px;
+    min-height: 540px;
     scroll-snap-align: start;
+  }
+
+  .service-portfolio-image {
+    height: 300px;
   }
 
   .services-portfolio-dots {
@@ -1600,14 +1605,45 @@ section:not(.home-section) .section-title::after {
 
   .top-nav-inner {
     display: flex;
-    min-height: 64px;
+    min-height: 56px;
     flex-wrap: wrap;
-    justify-content: center;
-    row-gap: 0.5rem;
-    padding-block: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: 0.35rem;
+    column-gap: 0.75rem;
+    padding-block: 0.4rem;
+  }
+
+  .brand-lockup {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-texts strong {
+    font-size: 0.88rem;
+  }
+
+  .brand-texts small {
+    display: none;
+  }
+
+  .lang-switch {
+    order: 2;
+    width: auto;
+    justify-content: flex-end;
+    flex-shrink: 0;
   }
 
   .top-nav-links {
+    order: 3;
+    position: static;
+    left: auto;
+    transform: none;
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
